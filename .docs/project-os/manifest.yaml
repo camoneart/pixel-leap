@@ -1,0 +1,17 @@
+# Project OS manifest — このファイルは three-elements-harness がプロジェクトに
+# 導入されていることを宣言する。
+# schema: ~/.claude/skills/three-elements-harness/references/project-os-schema.md#1
+
+project: pixel-leap               # init-project-os.sh が置換
+created: 2026-05-26               # init-project-os.sh が置換 (YYYY-MM-DD)
+mode_default: interactive               # interactive | auto
+project_os_root: .docs/project-os/      # 固定値
+
+# ---- 任意フィールド ----
+# notes: |
+#   運用メモや導入経緯を自由記述
+# adopted_at: 2026-04-17T10:00:00+09:00
+# maintainers:
+#   - name@example.com
+# macro_policies_ref: .docs/project-os/config/macro-policies.yaml   # full phase のみ
+macro_policies_ref: .docs/project-os/config/macro-policies.yaml

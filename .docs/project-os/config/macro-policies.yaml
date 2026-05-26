@@ -1,0 +1,71 @@
+# Project OS macro policies — Macro 層 4 職務のプロジェクト固有パラメータ
+# schema: ~/.claude/skills/three-elements-harness/references/project-os-schema.md#2
+#
+# 重要原則: このファイルは YAML DSL で完結させる。Python コード禁止。
+# 未存在でも skill は動作する(デフォルト値使用、validate-project-os.py は green 維持)。
+
+# ================================================================
+# 職務 2: 優先順位付け (Prioritization)
+# ================================================================
+
+# DSL runtime 評価器 (select-priority.py) の挙動切替 (agent-essence K-1.2 対応):
+#   auto      — rules を評価して自動選定、結果を trace 付きで返す (デフォルト)
+#   advisory  — 評価するが「参考情報」として返し、最終判断はユーザー
+#   off       — rules を無視、呼出側で手動選定 (exit 3 で signal)
+# YAML 1.1 の unquoted "off" は bool False に解釈されるため引用符で囲む。
+priority_rules_mode: "auto"
+
+priority_rules:
+  - name: kpi-drift-first
+    when: "kpi.delta > 0.1"              # KPI が 10% 以上 drift
+    weight: 100
+
+  - name: deadline-nearest
+    when: "deadline != null"
+    weight: 50
+
+  # - name: <custom rule>
+  #   when: "<DSL 式>"
+  #   weight: <0-1000>
+
+# ================================================================
+# 職務 3: チケット化 (Ticketing)
+# ================================================================
+
+ticket_conventions:
+  id_prefix: "TICKET-"
+  id_digits: 3                           # TICKET-001, TICKET-002, ...
+  status_flow: [todo, in_progress, review, done, failed]
+
+# ================================================================
+# 職務 4: 受入判定の 2 層オラクル (behavior/structure)
+# ================================================================
+# 機能テスト合格だけでは構造品質は保証されないため、
+# done 遷移は両オラクル pass を条件化する。
+
+acceptance_criteria_schema:
+  behavior_oracle:
+    required: true
+    types: [unit_test, e2e_test, integration_test, manual_smoke]
+    # ticket frontmatter で done 遷移前に behavior_oracle.artifact に evidence パスを記録
+
+  structural_oracle:
+    required: true
+    checks:
+      - responsibility_boundaries        # team-* の責務範囲内に変更が収まる
+      - testability                      # refactor なしでテスト追加可能
+      - file_scope_discipline            # related_spec の WHAT に閉じている (無関係ファイルに触れない)
+
+# ================================================================
+# Opus 固定判断の検証 KPI (optional)
+# ================================================================
+# Macro/Micro 両層を Claude Opus 固定で動かす判断は信念ではなく数値根拠を持つ。
+# 閾値割れは skill 方針の再検討トリガーになる。
+# 詳細: assets/_OPUS_FIXATION_RATIONALE.md
+
+kpi:
+  opus_fixation_validity:
+    ticket_success_rate_min: 0.80        # Opus 固定 ticket の成功率下限 (0.0-1.0)
+    replan_chain_max_avg: 2.5            # retry_chain の window 内平均上限 (>= 1.0)
+    measurement_window_days: 30          # 測定窓 (日数、>= 1)
+    escalation: notify_rationale_review  # 閾値割れ時の対応

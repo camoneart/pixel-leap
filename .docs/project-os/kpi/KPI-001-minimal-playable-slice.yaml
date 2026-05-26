@@ -1,0 +1,20 @@
+# KPI definition — Project OS の状態基盤における目標指標
+# schema: ~/.claude/skills/three-elements-harness/references/project-os-schema.md#3
+
+id: KPI-001
+title: 最小プレイアブルスライスの完成
+metric: playable_slice_core_mechanics_ratio
+threshold:
+  min: null
+  max: null
+  target: 1.0
+unit: ratio
+measured_at: 2026-05-26
+status: active
+source: internal_computation
+
+description: |
+  pixel-leap の最小縦スライスが「移動/ジャンプ・敵接触・ゴール到達・ゲームループ」の
+  コア 4 要素を満たし、ブラウザで始めから終わりまで遊べる状態に到達した割合 (1.0 = 全要素達成)。
+  three-elements-harness の Project OS end-to-end スモークテストの成功指標を兼ねる。
+related_context: "three-elements-harness 初ドッグフーディング (smoke test workload)"

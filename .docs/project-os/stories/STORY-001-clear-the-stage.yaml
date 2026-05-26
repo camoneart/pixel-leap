@@ -1,0 +1,21 @@
+# User Story — Project OS の依存チェーンにおけるユーザーニーズの定義
+# schema: ~/.claude/skills/three-elements-harness/references/project-os-schema.md#4
+
+id: STORY-001
+title: 1 画面のアクションステージをクリアする
+as_a: a player
+i_want: 左右移動とジャンプで段差を渡り、往復する敵を避けてゴール旗に到達したい
+so_that: 1 画面の最小アクションを始めから終わりまで遊んでクリアできる
+
+# ---- 上方リンク (validator で参照先存在を検証) ----
+related_kpi: KPI-001
+
+# ---- 状態 ----
+status: active
+
+# ---- 任意フィールド ----
+description: |
+  最小縦スライスのプレイ体験。プレイヤーは重力下で床と段差を移動・ジャンプし、
+  左右往復する敵 1 体を避けつつゴール旗に到達するとクリア。接触するとゲームオーバー
+  (またはリスポーン)。1 画面で完結する。
+priority: high

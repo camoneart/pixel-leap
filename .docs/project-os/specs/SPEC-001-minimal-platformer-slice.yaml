@@ -1,0 +1,27 @@
+# Spec definition — Project OS の依存チェーンにおける仕様の定義
+# schema: ~/.claude/skills/three-elements-harness/references/project-os-schema.md#5
+
+id: SPEC-001
+title: 最小 2D 横スクロールアクションの縦スライス仕様
+
+# ---- 上方リンク (validator で参照先存在を検証) ----
+related_story: STORY-001
+
+# ---- 受入条件 ----
+acceptance_criteria:
+  - プレイヤーが左右移動・ジャンプ・重力で動き、床と段差プラットフォーム (2-3 個) に着地できる
+  - 敵が 1 体存在し左右に往復し、プレイヤーが接触するとゲームオーバー (またはリスポーン) になる
+  - ゴール旗が 1 個あり、到達するとクリア表示が出る
+  - ゲームループ (入力 -> 更新 -> 描画) が安定して動作する
+  - 1 画面で完結し、pnpm + vite でローカル起動してブラウザで実際に遊べる
+
+# ---- 状態 ----
+status: canonical
+
+# ---- 任意フィールド ----
+description: |
+  スタック: Canvas 2D + TypeScript + Vite (依存最小・美学を完全制御・実装面が多く検証の歯ごたえが出る)。
+  スコープは最小縦スライスに固定し、これ以上広げない (面追加・敵種追加・ギミックは範囲外)。
+rationale: |
+  three-elements-harness の Project OS が end-to-end で機能するか検証するためのワークロード題材。
+  衝突判定・状態管理・ゲームループ・入力処理・描画を最小限に網羅し、team-* に十分な仕事を出す。
