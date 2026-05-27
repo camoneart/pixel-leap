@@ -56,7 +56,8 @@ coverage/
 .claude/settings.local.json
 
 # === Harness R&D (public repo には出さない — 個人ハーネスの内部解説/検証 findings) ===
-# 計画+観測ログ / ログ全般 / 解説 HTML はローカル保持。公開は project-os (ゲーム設計) のみ。
+# 計画+観測ログ / ログ全般 / 解説 HTML / ハーネス監査 はローカル保持。公開は project-os (ゲーム設計) のみ。
 .docs/plans/
 .docs/logs/
 .docs/output/
+.docs/coordination-integrity/
