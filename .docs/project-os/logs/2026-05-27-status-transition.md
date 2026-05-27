@@ -12,3 +12,12 @@ summary: "Micro 着手: Agent Teams で TICKET-001 (Vite+TS基盤+プレイヤ�
 
 # Log Entries: status-transition
 
+
+## 2026-05-27T05:05:59+09:00
+
+- action: status_transition
+- layer: micro
+- ticket_id: TICKET-001
+- from: in_progress
+- to: review
+- summary: Micro 実装完了 (scaffold+physics+collision+loop+input+terrain+render+main、42テストGREEN+build成功) → review へ

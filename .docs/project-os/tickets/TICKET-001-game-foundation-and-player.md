@@ -2,7 +2,7 @@
 id: TICKET-001
 title: ゲーム基盤・ゲームループ・プレイヤー操作・地形と衝突
 type: ticket
-status: in_progress
+status: done
 priority: high
 created: 2026-05-26
 updated: 2026-05-27
@@ -12,12 +12,14 @@ related_kpi: KPI-001
 related_story: STORY-001
 related_spec: SPEC-001
 spec_snapshot_sha: daa2d63dce7f207c90441d3842f3247fbb35ae99
-kpi_snapshot_sha: null
-story_snapshot_sha: null
+kpi_snapshot_sha: 63215c24f24059d9c24cecb2ba4207748a5d70aa
+story_snapshot_sha: 14a3f337eafb1033bc168b48adcdfb266e126999
 
 # ---- 下方リンク (成果物チェーン) ----
 subtasks: []
-artifacts: []
+artifacts:
+  - ref: artifacts/ARTIFACT-001-ticket-001-game-foundation.md
+    kind: code
 
 # ---- 目標保全 ----
 original_goal: |
@@ -38,16 +40,16 @@ source_verification:
 acceptance_criteria_schema:
   behavior_oracle:
     type: unit_test
-    artifact: null
-    command: null
+    artifact: src/physics.test.ts
+    command: pnpm vitest run
   structural_oracle:
-    responsibility_boundaries: pending
-    testability: pending
-    file_scope_discipline: pending
+    responsibility_boundaries: pass
+    testability: pass
+    file_scope_discipline: pass
 
 # ---- レビュー権限分離 ----
 assignee_team: team-implementer
-reviewed_by: null
+reviewed_by: team-tester
 
 # ---- DAG ----
 depends_on: []
