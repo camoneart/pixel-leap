@@ -1,0 +1,1 @@
+../../project-os/specs/SPEC-001-minimal-platformer-slice.yaml
