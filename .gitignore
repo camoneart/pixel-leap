@@ -52,8 +52,9 @@ coverage/
 .nyc_output/
 
 # === Claude Code / AI Tools ===
-# settings.json は追跡対象 (Agent Teams flag を共有)。local override のみ無視。
+# settings.json は追跡対象 (Agent Teams flag を共有)。local override / handoff は無視。
 .claude/settings.local.json
+.claude/handoff-state.md
 
 # === Harness R&D (public repo には出さない — 個人ハーネスの内部解説/検証 findings) ===
 # 計画+観測ログ / ログ全般 / 解説 HTML / ハーネス監査 はローカル保持。公開は project-os (ゲーム設計) のみ。
